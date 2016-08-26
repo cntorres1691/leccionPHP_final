@@ -29,11 +29,11 @@
     }
 	} 
 	
-   public function getNombre($id)
+   public function getNombre($id_becario)
    {
     
     $stmt = $this->con->prepare("SELECT * FROM becario WHERE id=:id");
-    $stmt->execute(array(":id"=>$id));
+    $stmt->execute(array(":id"=>$id_becario));
     $becario=$stmt->fetchObject("becario");
     return $becario;
    }

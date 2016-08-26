@@ -1,6 +1,6 @@
 <?php
 
- class Demo {
+ class becario {
   
   private $id_becario;
   private $nombre;

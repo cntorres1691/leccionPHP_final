@@ -1,24 +1,24 @@
 <?php
 
   require 'collector.php';
-  require 'demo.php';
-  class DemoCollector extends Collector {
+  require 'programa.php';
+  class ProgramaCollector extends Collector {
 
    function __construct()
    {
     parent::__construct();
    }
 
-   public function addDemo($demo)
+   public function addPrograma($programa)
    {
-     return self::execQuery("INSERT INTO Demo(nombre) VALUES('".$demo->getNombre()."')");   
+     return self::execQuery("INSERT INTO Programa(nombre) VALUES('".$programa->getNombre()."')");   
    }
 
-   public function insertar($nombre, $imagen) {    
+   public function insertar($nombre, $pais) {    
 		//$insertrow = self::$db->insertRow("INSERT INTO Demo (nombre, foto) VALUES (?, ?)", array("{$nombre}", "{$imagen}"));
 		try
     {
-      self::execQuery("INSERT INTO Demo (nombre, foto) VALUES ( '".$nombre."','".$imagen."') ");
+      self::execQuery("INSERT INTO programa (nombre, pais) VALUES ( '".$nombre."','".$pais."') ");
 
      return true; 
     }
@@ -32,23 +32,23 @@
    public function getNombre($id)
    {
     
-    $stmt = $this->con->prepare("SELECT * FROM Demo WHERE id=:id");
+    $stmt = $this->con->prepare("SELECT * FROM programa WHERE id=:id");
     $stmt->execute(array(":id"=>$id));
-    $usuario=$stmt->fetchObject("Demo");
+    $usuario=$stmt->fetchObject("programa");
     return $usuario;
    }
-   public function readAlldemo(){
+   public function readAllprograma(){
 
-      return self::read('demo','demo'); 
+      return self::read('programa','programa'); 
 
 
   }
 
-   public function updateDemo($demo)
+   public function updatePrograma($demo)
    {
     try
     {
-      self::execQuery("UPDATE Demo SET id='".$demo->getId()."',nombre='".$demo->getNombre()."' WHERE id=".$demo->getId());
+      self::execQuery("UPDATE Programa SET id='".$programa->getId()."',nombre='".$programa->getNombre()."',pais='".$programa->getPais()."' WHERE id=".$programa->getId());
 
      return true; 
     }
@@ -59,11 +59,11 @@
     }
    }
 
-   public function deleteDemo($demo)
+   public function deletePrograma($programa)
    {
     try
     {
-      self::execQuery("DELETE FROM Demo WHERE id=".$demo);
+      self::execQuery("DELETE FROM programa WHERE id=".$programa);
 
      return true; 
     }
